@@ -190,7 +190,8 @@ function CartComponent({ total }: IProps) {
             width="100%"
             borderRadius="none"
             flexDir="column"
-            onSubmit={handleSubmitPayment(handlePayment)}>
+            onSubmit={handleSubmitPayment(handlePayment)}
+        >
             <MeCard
                 register={registerPayment}
                 trigger={trigger}
@@ -204,7 +205,8 @@ function CartComponent({ total }: IProps) {
                 <Box
                     w={{ base: '100%', md: '460px' }}
                     display="flex"
-                    flexDir="column">
+                    flexDir="column"
+                >
                     <SimpleGrid columns={2} spacing={2} mt={6} mb={4}>
                         <Box
                             display="flex"
@@ -214,7 +216,8 @@ function CartComponent({ total }: IProps) {
                             flexDir="row"
                             alignContent="center"
                             justifyContent="left"
-                            lineHeight="22.5px">
+                            lineHeight="22.5px"
+                        >
                             Total
                         </Box>
                         <Flex align="right" flexDir="column">
@@ -224,14 +227,16 @@ function CartComponent({ total }: IProps) {
                                 fontSize="18px"
                                 fontWeight="700"
                                 lineHeight="22.5px"
-                                textAlign="right">
+                                textAlign="right"
+                            >
                                 {total}
                             </Box>
                             <Box
                                 as="span"
                                 color="cinza.650"
                                 fontSize="12px"
-                                textAlign="right">
+                                textAlign="right"
+                            >
                                 em 1x no cartão
                             </Box>
                         </Flex>
@@ -241,7 +246,14 @@ function CartComponent({ total }: IProps) {
                         type="submit"
                         isLoading={isSubmittingPayment}
                         mt="20px"
-                        leftIcon={<BsFillBasket2Fill fontSize="22px" />}
+                        colorScheme="white.900"
+                        variant="solid"
+                        leftIcon={
+                            <BsFillBasket2Fill
+                                fontSize="22px"
+                                color="white.900"
+                            />
+                        }
                         justifyContent="center"
                         alignItems="center"
                         bg="principal.900"
@@ -252,14 +264,16 @@ function CartComponent({ total }: IProps) {
                             textDecoration: 'none'
                         }}
                         _focus={{ boxShadow: 'outline' }}
-                        borderRadius="none">
+                        borderRadius="none"
+                    >
                         <Box
                             as="span"
                             fontSize="20px"
                             fontFamily="Inter"
                             lineHeight="18px"
                             fontWeight="500"
-                            color="white.900">
+                            color="white.900"
+                        >
                             fechar pedido
                         </Box>
                     </Button>

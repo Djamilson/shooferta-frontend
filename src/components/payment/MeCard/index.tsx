@@ -1,33 +1,29 @@
 import {
-  Box,
-  Center,
-  Flex,
-  Heading,
-  HStack,
-  Image,
-  keyframes,
-  Stack,
-  Text,
-  usePrefersReducedMotion
+    Box,
+    Center,
+    HStack,
+
+    Stack,
+    usePrefersReducedMotion
 } from '@chakra-ui/react'
 import creditCardType from 'credit-card-type'
-import { motion } from 'framer-motion'
 import { ChangeEvent, useState } from 'react'
 import { FieldError } from 'react-hook-form'
 import {
-  RiBankCardLine,
-  RiCalendarLine,
-  RiSecurePaymentFill,
-  RiUser3Line
+    RiBankCardLine,
+    RiCalendarLine,
+    RiSecurePaymentFill,
+    RiUser3Line
 } from 'react-icons/ri'
 import * as masks from '../../../components/Form/InputMask/masks'
 import {
-  itemAnimationLeft,
-  itemAnimationRight
+    itemAnimationLeft,
+    itemAnimationRight
 } from '../../../styles/animation'
 import { Input } from '../../Form/Input'
 import { InputMask } from '../../Form/InputMask'
 import { Select } from '../../Form/Select'
+import { InfoCard } from '../InfoCard'
 
 /*const PaymentCard = dynamic(() => import('react-payment-card-component'), {
     ssr: false
@@ -108,19 +104,7 @@ function MeCard({
         ? undefined
         : `${itemAnimationLeft} 300ms`
 
-    const animationRight = prefersReducedMotion
-        ? undefined
-        : `${itemAnimationRight} 300ms`
 
-    const animationKeyframes = keyframes`
-  0% { transform: scale(1) rotate(0); border-radius: 20%; }
-  25% { transform: scale(2) rotate(0); border-radius: 20%; }
-  50% { transform: scale(2) rotate(270deg); border-radius: 50%; }
-  75% { transform: scale(1) rotate(270deg); border-radius: 50%; }
-  100% { transform: scale(1) rotate(0); border-radius: 20%; }
-`
-
-    const animation = `${animationKeyframes} 2s ease-in-out infinite`
 
     return (
         <Box
@@ -210,155 +194,14 @@ function MeCard({
                     />
                 </Stack>
             </Center>
-            <Box
-                w={{ base: '100%', md: '360px' }}
-                display={{ md: 'flex' }}
-                ml={{ md: 6 }}
-                mt={{ base: 6 }}
-                animation={animationRight}
-            >
-                <Center display="flex" flexDir="column">
-                    <Box
-                        as={motion.div}
-                        animation={animation}
-                        padding="2"
-                        bgGradient="linear(to-l, #7928CA, #FF0080)"
-                        width="12"
-                        height="12"
-                        display="flex"
-                    />
-
-                    <Flex
-                        p={5}
-                        shadow="md"
-                        w="22em"
-                        h="12em"
-                        borderWidth="1px"
-                        borderRadius="lg"
-                    >
-                        <Box flex="1">
-                            <Image
-                                borderRadius="5"
-                                width="60px"
-                                src="/chip.png"
-                                alt="chip"
-                            />
-                            <Text
-                                fontWeight="600"
-                                letterSpacing="2px"
-                                mt={4}
-                                color="cinza.800"
-                                fontSize="16"
-                            >
-                                {numberCart}
-                            </Text>
-                            <Text
-                                fontWeight="400"
-                                color="cinza.800"
-                                fontSize="14"
-                                my={1}
-                            >
-                                <Text
-                                    fontWeight="400"
-                                    color="cinza.800"
-                                    fontSize="12"
-                                >
-                                    VÁLIDO ATÉ
-                                </Text>
-                                {cardExpiration !== ''
-                                    ? cardExpiration
-                                    : 'dd/yyyy'}
-                            </Text>
-                            <Heading
-                                fontWeight="500"
-                                color="cinza.800"
-                                fontSize="16"
-                            >
-                                {nameCart}
-                            </Heading>
-                        </Box>
-                        <Center w="60px">
-                            <Image
-                                borderRadius="5"
-                                width="60px"
-                                src="/chip.png"
-                                alt="chip"
-                            />
-                            <Text>{cardType.niceType}</Text>
-                        </Center>
-                    </Flex>
-
-                    <Box
-                        shadow="md"
-                        w="22em"
-                        h="12em"
-                        borderRadius="lg"
-                        bgImage="url('/background-card.png')"
-                        bgPosition="center"
-                        bgRepeat="no-repeat"
-                        display="flex"
-                        flexDir="column"
-                        justifyContent="center"
-                    >
-                        <Box
-                            shadow="md"
-                            mt="25px"
-                            w="22em"
-                            h="2.8em"
-                            border="0"
-                            bg="#242400"
-                        />
-
-                        <Box
-                            mt="20px"
-                            h="2.8em"
-                            display="flex"
-                            mx="2em"
-                            w="18em"
-                        >
-                            <Box
-                                w="15em"
-                                h="2.8em"
-                                border="0"
-                                bgImage="url('/card-back02.png')"
-                                bgPosition="center"
-                                bgRepeat="no-repeat"
-                            />
-                            <Box
-                                w="8em"
-                                h="2.8em"
-                                border="0"
-                                bgImage="url('/card-back02.png')"
-                                bgPosition="center"
-                                bgRepeat="no-repeat"
-                                display="flex"
-                                justifyContent="end"
-                                alignItems="center"
-                            >
-                                <Text
-                                    color="cinza.800"
-                                    fontWeight="semibold"
-                                    letterSpacing="wide"
-                                    fontSize="14"
-                                    mr="20px"
-                                >
-                                    {securityCodeCart}
-                                </Text>
-                            </Box>
-                        </Box>
-
-                        <Box
-                            mx="2em"
-                            w="18em"
-                            h="2.4em"
-                            border="0"
-                            bgImage="url('/background03.png')"
-                            bgPosition="center"
-                            bgRepeat="no-repeat"
-                        ></Box>
-                    </Box>
-                </Center>
-            </Box>
+            <InfoCard
+                flipped={flipped}
+                numberCart={numberCart}
+                cardExpiration={cardExpiration}
+                nameCart={nameCart}
+                type={cardType?.type}
+                securityCodeCart={securityCodeCart}
+            />
         </Box>
     )
 }

@@ -20,7 +20,7 @@
         "brasilapi": "^1.0.0",
         "correios-brasil": "^2.2.2",
         "credit-card-type": "^9.1.0",
-        "framer-motion": "^6.3.3",
+        "framer-motion": "^6",
         "gerador-validador-cpf": "^5.0.2",
         "imask": "^6.4.2",
         "jwt-decode": "^3.1.2",
