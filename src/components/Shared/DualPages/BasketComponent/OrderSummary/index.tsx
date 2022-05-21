@@ -20,7 +20,6 @@ type IProps = {
 
 function OrderSummary({
     handleConfirmation,
-    handleAddProduct,
     total,
     totalQt,
     animation,

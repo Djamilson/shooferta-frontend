@@ -5,7 +5,8 @@ import {
     BreadcrumbItem,
     BreadcrumbLink,
     Flex,
-    usePrefersReducedMotion
+    usePrefersReducedMotion,
+    useToast
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import React, { useMemo } from 'react'
@@ -44,7 +45,8 @@ type IProps = {
 }
 
 function BasketComponent({ meInitCategories, meInitMenuPolitics }: IProps) {
-    const router = useRouter()
+  const router = useRouter()
+  const toast = useToast()
 
     const { isAuthenticated, user } = useAuth()
 
@@ -88,7 +90,7 @@ function BasketComponent({ meInitCategories, meInitMenuPolitics }: IProps) {
 
     async function handleRemoveProduct(productId: string) {
         removeProduct(productId, isAuthenticated)
-      
+
         if (isAuthenticated) {
             removeItemForgottenCarts(productId)
         }
@@ -127,7 +129,19 @@ function BasketComponent({ meInitCategories, meInitMenuPolitics }: IProps) {
 
     function handleConfirmation() {
         if (isAuthenticated) {
-            router.push(`/logged/payment/${user.person.id}`)
+            if (cart && cart.length > 0) {
+                router.push(`/logged/payment/${user.person.id}`)
+            } else {
+                toast({
+                    title: 'Atenção!',
+                    description:
+                        'Você ainda não tem produto na cesta, tente adicionar produto antes de continuar!',
+                    status: 'warning',
+                    duration: 3000,
+                    position: 'top-right',
+                    isClosable: true
+                })
+            }
         } else {
             router.push('/shared/signin')
         }
@@ -191,7 +205,8 @@ function BasketComponent({ meInitCategories, meInitMenuPolitics }: IProps) {
             flexDir="column"
             bg="cinza.400"
             p="0"
-            m="0">
+            m="0"
+        >
             <HeaderMessage />
             <Header />
             {isLoadingCategories && <ChakraLoading />}
@@ -205,7 +220,8 @@ function BasketComponent({ meInitCategories, meInitMenuPolitics }: IProps) {
             <Breadcrumb
                 spacing="8px"
                 shadow="md"
-                separator={<ChevronRightIcon color="gray.500" />}>
+                separator={<ChevronRightIcon color="gray.500" />}
+            >
                 <BreadcrumbItem>
                     <BreadcrumbLink href="#">página inicial</BreadcrumbLink>
                 </BreadcrumbItem>
@@ -229,7 +245,8 @@ function BasketComponent({ meInitCategories, meInitMenuPolitics }: IProps) {
                     bg="white.900"
                     color="cinza.825"
                     flex="1"
-                    animation={animationLeft}>
+                    animation={animationLeft}
+                >
                     <Title>minha cesta</Title>
                     <MeBasket
                         cartFormatted={cartFormatted}

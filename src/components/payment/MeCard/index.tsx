@@ -2,7 +2,6 @@ import {
     Box,
     Center,
     HStack,
-
     Stack,
     usePrefersReducedMotion
 } from '@chakra-ui/react'
@@ -16,18 +15,11 @@ import {
     RiUser3Line
 } from 'react-icons/ri'
 import * as masks from '../../../components/Form/InputMask/masks'
-import {
-    itemAnimationLeft,
-    itemAnimationRight
-} from '../../../styles/animation'
+import { itemAnimationLeft } from '../../../styles/animation'
 import { Input } from '../../Form/Input'
 import { InputMask } from '../../Form/InputMask'
 import { Select } from '../../Form/Select'
 import { InfoCard } from '../InfoCard'
-
-/*const PaymentCard = dynamic(() => import('react-payment-card-component'), {
-    ssr: false
-})*/
 
 type ErrorsPayment = {
     card_holder_name?: FieldError
@@ -103,8 +95,6 @@ function MeCard({
     const animationLeft = prefersReducedMotion
         ? undefined
         : `${itemAnimationLeft} 300ms`
-
-
 
     return (
         <Box
