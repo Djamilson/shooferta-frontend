@@ -242,7 +242,7 @@ function CartComponent({ total }: IProps) {
                                 fontSize="12px"
                                 textAlign="right"
                             >
-                                em 1x no cartão
+                                em {selectedInstallment.label} no cartão
                             </Box>
                         </Flex>
                     </SimpleGrid>

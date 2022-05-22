@@ -178,10 +178,16 @@ function MeCard({
                         />
                     </HStack>
 
-                    <Menu>
+                    <Menu variant="floating">
                         {({ isOpen }) => (
                             <>
                                 <MenuButton
+                                    variant="floating"
+                                    borderRadius={0}
+                                    border="1px solid"
+                                    borderColor="cinza.700"
+                                    color="cinza.650"
+                                    backgroundColor="white.900"
                                     isActive={isOpen}
                                     as={Button}
                                     rightIcon={<ChevronDownIcon />}
@@ -191,7 +197,11 @@ function MeCard({
                                         : selectedInstallment.label}
                                 </MenuButton>
 
-                                <MenuList minWidth="240px">
+                                <MenuList
+                                    minWidth="240px"
+                                    color="cinza.900"
+                                    borderRadius={0}
+                                >
                                     <MenuOptionGroup
                                         defaultValue="1"
                                         title="Total"
