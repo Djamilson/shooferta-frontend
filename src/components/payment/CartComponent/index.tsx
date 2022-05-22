@@ -9,7 +9,7 @@ import {
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useRouter } from 'next/router'
 import pagarme from 'pagarme'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { BsFillBasket2Fill } from 'react-icons/bs'
 import * as yup from 'yup'
@@ -41,6 +41,11 @@ export type ICard = {
     installment: string
 }
 
+export type IInstallment = {
+    value: string
+    label: string
+}
+
 type IProps = {
     total: string
 }
@@ -49,6 +54,7 @@ function CartComponent({ total }: IProps) {
     const router = useRouter()
     const { cart, clearCart } = useCart()
     const toast = useToast()
+    const [numberOfInstallments] = useState<number>(4)
 
     const {
         register: registerPayment,
@@ -79,7 +85,6 @@ function CartComponent({ total }: IProps) {
                 process.env.NEXT_PUBLIC_PAGARME_ENCRYPTION_KEY
             )
 
-
             const cardHash = await pagarme.client
                 .connect({
                     encryption_key:
@@ -105,7 +110,7 @@ function CartComponent({ total }: IProps) {
                 freight: 0,
                 products,
                 token: cardHash,
-                installments,
+                installments: selectedInstallment.value,
                 payment_method_id: 'card'
             })
 
@@ -137,51 +142,49 @@ function CartComponent({ total }: IProps) {
         }
     }
 
-    const [renderInstallments, setRenderInstallments] = useState([
-        { label: '', value: '' }
-    ])
+    const [selectedInstallment, setSelectedInstallment] =
+        useState<IInstallment>({} as IInstallment)
 
-    function loadInstallment() {
-        setRenderInstallments(() => {
-            const meArray = [...new Array(4)].map((_, idx) => {
-                const installment = idx + 1
-                return {
-                    label: `${installment} x  ${formatPrice(
-                        Number(
-                            total
-                                .replace('R$', '')
-                                .replace('.', '')
-                                .replace(',', '.')
-                                .trim()
-                        ) / installment
-                    )}`,
-                    value: `${installment}`
-                }
-            })
-            return [{ label: 'Selecione valor', value: '' }, ...meArray]
+    const renderInstallments = useMemo(() => {
+        const meArray = [...new Array(numberOfInstallments)].map((_, idx) => {
+            const installment = idx + 1
+            const meTotal = formatPrice(
+                Number(
+                    total
+                        .replace('R$', '')
+                        .replace('.', '')
+                        .replace(',', '.')
+                        .trim()
+                ) / installment
+            )
+            return {
+                label: `${installment} x  ${meTotal}`,
+                value: `${installment}`
+            }
         })
-    }
+        return meArray
+    }, [numberOfInstallments, total])
 
     useEffect(() => {
-        loadInstallment()
-    }, [])
-    const [slt_installment, setSlt_installment] = useState('')
+        const meTotal = formatPrice(
+            Number(
+                total
+                    .replace('R$', '')
+                    .replace('.', '')
+                    .replace(',', '.')
+                    .trim()
+            )
+        )
+        setSelectedInstallment({
+            label: `1 x  ${meTotal}`,
+            value: `1`
+        })
+    }, [numberOfInstallments, total])
 
-    const selectFn = (event: EventTarget & HTMLSelectElement) => {
-        //const { value } = event.target;
+    function handleSelectInstallments(event: IInstallment) {
+        console.log('Pegou o', event)
 
-        console.log('data, val', event.options[event.selectedIndex].value)
-        setSlt_installment(event.options[event.selectedIndex].value)
-    }
-
-    const [installments, setInstallments] = useState(0)
-
-    function handleSelectInstallments(event: ChangeEvent<HTMLSelectElement>) {
-        const { value } = event.target
-
-        console.log('Pegou o', event.target)
-
-        setInstallments(Number(value))
+        setSelectedInstallment(event)
     }
 
     return (
@@ -199,6 +202,7 @@ function CartComponent({ total }: IProps) {
                 error={errorsPayment}
                 handleSelectInstallments={handleSelectInstallments}
                 renderInstallments={renderInstallments}
+                selectedInstallment={selectedInstallment}
             />
 
             <Horizontal />

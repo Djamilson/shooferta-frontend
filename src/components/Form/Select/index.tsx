@@ -49,19 +49,11 @@ const SelectBase: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
 
     function serealizableOption(options: IOption[]) {
         return options.map((option: IOption) => {
-            if (option.value === '') {
-                return (
-                    <option key="wqq" value="testest" disabled hidden>
-                        Selecione
-                    </option>
-                )
-            } else {
-                return (
-                    <option key={option.value} value={option.value}>
-                        {option.label}
-                    </option>
-                )
-            }
+            return (
+                <option key={option.value} value={option.value}>
+                    {option.label}
+                </option>
+            )
         })
     }
 
@@ -72,13 +64,14 @@ const SelectBase: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
                     id={name}
                     name={name}
                     ref={ref}
+                    borderRadius={0}
+                    display="auto"
+                    {...rest}
                     onChange={(e: any) => {
                         handleKeyUp(e)
                         onChange(e)
                     }}
-                    borderRadius={0}
-                    display="auto"
-                    {...rest}>
+                >
                     {serealizableOption(options)}
                 </ChakraSelect>
 
@@ -87,7 +80,8 @@ const SelectBase: ForwardRefRenderFunction<HTMLSelectElement, SelectProps> = (
                         htmlFor={name}
                         fontFamily="archivo"
                         fontWeight="400"
-                        color="cinza.700">
+                        color="cinza.700"
+                    >
                         {e.length > 0 ? label : labelPlaceHolder}
                     </FormLabel>
                 )}
