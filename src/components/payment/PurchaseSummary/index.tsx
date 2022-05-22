@@ -7,23 +7,30 @@ type IProps = {
     totalQt: number
     total: string
     handleAddress: () => void
-    bgColor?: string
+    bgColor?: string    
 }
 
-function PurchaseSummary({ totalQt, total, handleAddress, bgColor }: IProps) {
+function PurchaseSummary({
+    totalQt,
+    total,
+    handleAddress,
+    bgColor
+}: IProps) {
     return (
         <Box
             mt={{ base: 4, md: 0 }}
             p={{ base: 4, md: 6 }}
             ml={{ base: 0, md: 4 }}
             bg={bgColor ? bgColor : 'cinza.350'}
-            color="cinza.825">
+            color="cinza.825"
+        >
             <Title
                 fontSize={{
                     base: '14px',
                     md: '16px',
                     lg: '18px'
-                }}>
+                }}
+            >
                 resumo da compra
             </Title>
 
@@ -33,7 +40,8 @@ function PurchaseSummary({ totalQt, total, handleAddress, bgColor }: IProps) {
                 display="flex"
                 justifyContent="space-between"
                 my={4}
-                flexDir="column">
+                flexDir="column"
+            >
                 <SimpleGrid columns={2} spacing={2}>
                     <Box
                         display="flex"
@@ -42,7 +50,8 @@ function PurchaseSummary({ totalQt, total, handleAddress, bgColor }: IProps) {
                         flexDir="row"
                         alignContent="center"
                         justifyContent="left"
-                        lineHeight="22.5px">
+                        lineHeight="22.5px"
+                    >
                         {totalQt === 0 && `0`}
                         {totalQt === 1 && `${totalQt} produto`}
                         {totalQt > 1 && `${totalQt} produtos`}
@@ -60,21 +69,24 @@ function PurchaseSummary({ totalQt, total, handleAddress, bgColor }: IProps) {
                         color="cinza.650"
                         fontSize="15px"
                         lineHeight="22.5px"
-                        textAlign="right">
+                        textAlign="right"
+                    >
                         {total}
                     </Box>
                     <Box
                         as="span"
                         color="green.900"
                         fontSize="sm"
-                        justifyContent="left">
+                        justifyContent="left"
+                    >
                         frete
                     </Box>
                     <Box
                         as="span"
                         color="green.900"
                         fontSize="sm"
-                        textAlign="right">
+                        textAlign="right"
+                    >
                         grátis
                     </Box>
                 </SimpleGrid>
@@ -90,7 +102,8 @@ function PurchaseSummary({ totalQt, total, handleAddress, bgColor }: IProps) {
                         flexDir="row"
                         alignContent="center"
                         justifyContent="left"
-                        lineHeight="22.5px">
+                        lineHeight="22.5px"
+                    >
                         Total
                     </Box>
                     <Flex align="right" flexDir="column">
@@ -100,14 +113,16 @@ function PurchaseSummary({ totalQt, total, handleAddress, bgColor }: IProps) {
                             fontSize="18px"
                             fontWeight="700"
                             lineHeight="22.5px"
-                            textAlign="right">
+                            textAlign="right"
+                        >
                             {total}
                         </Box>
                         <Box
                             as="span"
                             color="cinza.650"
                             fontSize="12px"
-                            textAlign="right">
+                            textAlign="right"
+                        >
                             em 1x no cartão
                         </Box>
                         <Box
@@ -115,7 +130,8 @@ function PurchaseSummary({ totalQt, total, handleAddress, bgColor }: IProps) {
                             color="cinza.650"
                             fontSize="12px"
                             fontWeight="400"
-                            textAlign="right">
+                            textAlign="right"
+                        >
                             {`ou ${total} em até 10x`}
                         </Box>
 
@@ -125,7 +141,8 @@ function PurchaseSummary({ totalQt, total, handleAddress, bgColor }: IProps) {
                             color="cinza.650"
                             fontSize="14px"
                             fontWeight="500"
-                            textAlign="right">
+                            textAlign="right"
+                        >
                             {`${total} no boleto`}
                         </Box>
                     </Flex>
