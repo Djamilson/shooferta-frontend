@@ -35,6 +35,7 @@ export function setupAPIClient(ctx = undefined) {
     const api = axios.create({
         baseURL: `https://${host.WEBHOST}`
         //baseURL: `http://localhost:3336`
+        //baseURL: `http://${host.LOCALHOST}:${host.PORT}`
     })
 
     api.interceptors.response.use(
