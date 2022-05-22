@@ -79,6 +79,7 @@ function CartComponent({ total }: IProps) {
                 process.env.NEXT_PUBLIC_PAGARME_ENCRYPTION_KEY
             )
 
+
             const cardHash = await pagarme.client
                 .connect({
                     encryption_key:

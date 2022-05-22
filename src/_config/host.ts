@@ -1,5 +1,5 @@
 export default {
-    LOCALHOST: '192.168.1.15',
-    PORT: 3336,
-    WEBHOST: 'www.gobarbervip.com.br/shooferta'
+    LOCALHOST: process.env.NEXT_PUBLIC_LOCALHOST,
+    PORT: process.env.NEXT_PUBLIC_PORT,
+    WEBHOST: process.env.NEXT_PUBLIC_WEBHOST
 }
