@@ -10,8 +10,6 @@
         "plugin:react/recommended",
         "plugin:prettier/recommended",
         "prettier",
-        "prettier/react",
-
         "prettier/@typescript-eslint",
         "prettier/babel",
         "prettier/flowtype",
@@ -38,6 +36,8 @@
         "import/no-duplicates": "error",
         "prettier/prettier": "error",
         "react/prop-types": "off",
+        "space-before-blocks": "off",
+        "@typescript-eslint/space-before-blocks": ["error"],
         "no-unused-expressions": "off",
         "space-before-function-paren": "off",
         "react-hooks/rules-of-hooks": "error",
@@ -53,7 +53,7 @@
         "@typescript-eslint/no-floating-promises": "off",
         "@typescript-eslint/no-unsafe-assignment": "off"
     },
-   
+
     "settings": {
         "import/resolver": {
             "typescript": {},
