@@ -1,12 +1,19 @@
+import { ChevronDownIcon } from '@chakra-ui/icons'
 import {
     Box,
+    Button,
     Center,
     HStack,
+    Menu,
+    MenuButton,
+    MenuItemOption,
+    MenuList,
+    MenuOptionGroup,
     Stack,
     usePrefersReducedMotion
 } from '@chakra-ui/react'
 import creditCardType from 'credit-card-type'
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 import { FieldError } from 'react-hook-form'
 import {
     RiBankCardLine,
@@ -18,7 +25,7 @@ import * as masks from '../../../components/Form/InputMask/masks'
 import { itemAnimationLeft } from '../../../styles/animation'
 import { Input } from '../../Form/Input'
 import { InputMask } from '../../Form/InputMask'
-import { Select } from '../../Form/Select'
+import { IInstallment } from '../CartComponent'
 import { InfoCard } from '../InfoCard'
 
 type ErrorsPayment = {
@@ -33,11 +40,9 @@ type IProps = {
     trigger: any
     register: any
     error: ErrorsPayment
-    handleSelectInstallments: (event: ChangeEvent<HTMLSelectElement>) => void
-    renderInstallments: {
-        label: string
-        value: string
-    }[]
+    handleSelectInstallments: (event: any) => void
+    selectedInstallment: IInstallment
+    renderInstallments: IInstallment[]
 }
 
 type ICardType = {
@@ -51,7 +56,8 @@ function MeCard({
     register,
     error,
     handleSelectInstallments,
-    renderInstallments
+    renderInstallments,
+    selectedInstallment
 }: IProps) {
     const [nameCart, setNameCart] = useState('')
     const [numberCart, setNumberCart] = useState('')
@@ -172,16 +178,45 @@ function MeCard({
                         />
                     </HStack>
 
-                    <Select
-                        name="installment"
-                        label="Número de parcelas"
-                        id="idInstallment"
-                        color="cinza.900"
-                        onChange={handleSelectInstallments}
-                        options={renderInstallments}
-                        {...register('installment')}
-                        error={error.installment}
-                    />
+                    <Menu>
+                        {({ isOpen }) => (
+                            <>
+                                <MenuButton
+                                    isActive={isOpen}
+                                    as={Button}
+                                    rightIcon={<ChevronDownIcon />}
+                                >
+                                    {isOpen
+                                        ? 'Selecione'
+                                        : selectedInstallment.label}
+                                </MenuButton>
+
+                                <MenuList minWidth="240px">
+                                    <MenuOptionGroup
+                                        defaultValue="1"
+                                        title="Total"
+                                        type="radio"
+                                    >
+                                        {renderInstallments.map(item => {
+                                            return (
+                                                <MenuItemOption
+                                                    onClick={() => {
+                                                        handleSelectInstallments(
+                                                            item
+                                                        )
+                                                    }}
+                                                    key={item.value}
+                                                    value={item.value}
+                                                >
+                                                    {item.label}
+                                                </MenuItemOption>
+                                            )
+                                        })}
+                                    </MenuOptionGroup>
+                                </MenuList>
+                            </>
+                        )}
+                    </Menu>
                 </Stack>
             </Center>
             <InfoCard
