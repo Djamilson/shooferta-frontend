@@ -100,7 +100,7 @@ function BasketComponent({ meInitCategories, meInitMenuPolitics }: IProps) {
         () =>
             cart &&
         cart.map((item: INewProduct) => {
-              console.log('INewProduct:::', JSON.stringify(item, null, 2))
+             
                 const subtotal =
                     Number(item.product.price.price_promotion) > 0
                         ? Number(item.product.price.price_promotion) *

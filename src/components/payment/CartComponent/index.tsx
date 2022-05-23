@@ -29,8 +29,7 @@ const paymentFormSchema = yup.object().shape({
     card_expiration_date: schemaValidationCardDate,
     card_cvv: yup
         .string()
-        .required('Código de segurança do cartão obrigatório'),
-    installment: yup.string().required('Quantidade de parcela obrigatória')
+        .required('Código de segurança do cartão obrigatório')
 })
 
 export type ICard = {
@@ -38,7 +37,6 @@ export type ICard = {
     card_number: string
     card_expiration_date: string
     card_cvv: string
-    installment: string
 }
 
 export type IInstallment = {

@@ -1,14 +1,7 @@
-import { ChevronDownIcon } from '@chakra-ui/icons'
 import {
     Box,
-    Button,
     Center,
     HStack,
-    Menu,
-    MenuButton,
-    MenuItemOption,
-    MenuList,
-    MenuOptionGroup,
     Stack,
     usePrefersReducedMotion
 } from '@chakra-ui/react'
@@ -27,6 +20,7 @@ import { Input } from '../../Form/Input'
 import { InputMask } from '../../Form/InputMask'
 import { IInstallment } from '../CartComponent'
 import { InfoCard } from '../InfoCard'
+import { SelectBase } from '../Select'
 
 type ErrorsPayment = {
     card_holder_name?: FieldError
@@ -178,55 +172,11 @@ function MeCard({
                         />
                     </HStack>
 
-                    <Menu variant="floating">
-                        {({ isOpen }) => (
-                            <>
-                                <MenuButton
-                                    variant="floating"
-                                    borderRadius={0}
-                                    border="1px solid"
-                                    borderColor="cinza.700"
-                                    color="cinza.650"
-                                    backgroundColor="white.900"
-                                    isActive={isOpen}
-                                    as={Button}
-                                    rightIcon={<ChevronDownIcon />}
-                                >
-                                    {isOpen
-                                        ? 'Selecione'
-                                        : selectedInstallment.label}
-                                </MenuButton>
-
-                                <MenuList
-                                    minWidth="240px"
-                                    color="cinza.900"
-                                    borderRadius={0}
-                                >
-                                    <MenuOptionGroup
-                                        defaultValue="1"
-                                        title="Total"
-                                        type="radio"
-                                    >
-                                        {renderInstallments.map(item => {
-                                            return (
-                                                <MenuItemOption
-                                                    onClick={() => {
-                                                        handleSelectInstallments(
-                                                            item
-                                                        )
-                                                    }}
-                                                    key={item.value}
-                                                    value={item.value}
-                                                >
-                                                    {item.label}
-                                                </MenuItemOption>
-                                            )
-                                        })}
-                                    </MenuOptionGroup>
-                                </MenuList>
-                            </>
-                        )}
-                    </Menu>
+                    <SelectBase
+                        selectedInstallment={selectedInstallment}
+                        renderInstallments={renderInstallments}
+                        handleSelectInstallments={handleSelectInstallments}
+                    />
                 </Stack>
             </Center>
             <InfoCard

@@ -33,9 +33,7 @@ export function setupAPIClient(ctx = undefined) {
     ] = `Bearer ${cookies['nextauth.shooferta.frontend.token']}`
 
     const api = axios.create({
-        //baseURL: `https://${host.WEBHOST}`
-        //baseURL: `http://localhost:3336`
-        baseURL: `http://${host.LOCALHOST}:${host.PORT}`
+        baseURL: host.url
     })
 
     api.interceptors.response.use(
