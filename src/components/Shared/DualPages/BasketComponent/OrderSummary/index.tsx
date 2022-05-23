@@ -35,7 +35,6 @@ function OrderSummary({
                 async () => {
                     const data = await getPerson(personId)
 
-                    console.log('Person::: ', data)
                     return data
                 },
                 {
@@ -52,15 +51,17 @@ function OrderSummary({
             ml={{ md: 6 }}
             bg="white.900"
             borderRadius="none"
-            animation={animation}>
+            animation={animation}
+        >
             <Box pt="6" pb="3" px="6">
-                <Title color="cinza.825"> resumo do pedido</Title>
+                <Title color="cinza.825">resumo do pedido</Title>
 
                 <Box
                     mt="6"
                     display="flex"
                     justifyContent="space-between"
-                    alignItems="center">
+                    alignItems="center"
+                >
                     <Box as="span" color="gray.600" fontSize="sm">
                         {totalQt === 0 && `0`}
                         {totalQt === 1 && `${totalQt} produto`}
@@ -70,7 +71,8 @@ function OrderSummary({
                         as="span"
                         color="gray.600"
                         textAlign="right"
-                        fontSize="sm">
+                        fontSize="sm"
+                    >
                         {total}
                     </Box>
                 </Box>
@@ -78,7 +80,8 @@ function OrderSummary({
                     mt={2}
                     display="flex"
                     justifyContent="space-between"
-                    alignItems="center">
+                    alignItems="center"
+                >
                     <Box as="span" color="green.900" fontSize="sm">
                         frete
                     </Box>
@@ -86,7 +89,8 @@ function OrderSummary({
                         as="span"
                         color="green.900"
                         textAlign="right"
-                        fontSize="sm">
+                        fontSize="sm"
+                    >
                         gratis
                     </Box>
                 </Box>
@@ -94,13 +98,15 @@ function OrderSummary({
                 <Box
                     display="flex"
                     justifyContent="space-between"
-                    alignItems="center">
+                    alignItems="center"
+                >
                     <Box
                         as="span"
                         color="black.900"
                         textAlign="right"
                         fontWeight="700"
-                        fontSize="18px">
+                        fontSize="18px"
+                    >
                         total
                     </Box>
                     <Box
@@ -108,14 +114,16 @@ function OrderSummary({
                         color="black.900"
                         textAlign="right"
                         fontWeight="700"
-                        fontSize="18px">
+                        fontSize="18px"
+                    >
                         {total}
                     </Box>
                 </Box>
                 <Box
                     display="flex"
                     justifyContent="flex-end"
-                    alignItems="center">
+                    alignItems="center"
+                >
                     <Box textAlign="right">
                         <Box
                             as="span"
@@ -123,30 +131,26 @@ function OrderSummary({
                             fontWeight="400"
                             letterSpacing="wide"
                             fontSize="xs"
-                            mt={2}>
+                            mt={2}
+                        >
                             em 1x no cartão
                         </Box>
                         <Box
                             color="gray.500"
                             fontWeight="400"
                             letterSpacing="wide"
-                            fontSize="xs">
-                            ou R$ 5.955,18 em até 10x
+                            fontSize="xs"
+                        >
+                            ou {total} em até 10x
                         </Box>
                         <Box
                             mt={2}
                             color="gray.500"
                             fontWeight="400"
                             letterSpacing="wide"
-                            fontSize="xs">
-                            R$ 5.816,28 no boleto
-                        </Box>
-                        <Box
-                            color="gray.500"
-                            fontWeight="400"
-                            letterSpacing="wide"
-                            fontSize="xs">
-                            R$ 5.816,28 no boleto
+                            fontSize="xs"
+                        >
+                            {total} no boleto
                         </Box>
                     </Box>
                 </Box>
@@ -169,14 +173,16 @@ function OrderSummary({
                         _focus={{ boxShadow: 'outline' }}
                         onMouseEnter={() => handlePrefetchPerson()}
                         onClick={handleConfirmation}
-                        borderRadius="none">
+                        borderRadius="none"
+                    >
                         <Box
                             as="span"
                             fontSize="20px"
                             fontFamily="Inter"
                             lineHeight="18px"
                             fontWeight="500"
-                            color="white.900">
+                            color="white.900"
+                        >
                             comprar
                         </Box>
                     </Button>
@@ -198,14 +204,16 @@ function OrderSummary({
                             router.push(isAuthenticated ? '/home' : '/')
                         }
                         borderRadius="none"
-                        variant="link">
+                        variant="link"
+                    >
                         <Box
                             as="span"
                             fontSize="20px"
                             fontFamily="Inter"
                             lineHeight="18px"
                             fontWeight="500"
-                            color="cinza.900">
+                            color="cinza.900"
+                        >
                             adicionar mais produtos
                         </Box>
                     </Button>
