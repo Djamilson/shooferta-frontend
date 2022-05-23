@@ -1,18 +1,22 @@
-import React, { useRef } from 'react'
-
-import { Flex, Box } from '@chakra-ui/react'
+import { Alert, AlertIcon, AlertTitle, Box, Flex } from '@chakra-ui/react'
 import { Player } from '@lottiefiles/react-lottie-player'
-
-import { withSSRAuth } from '../../../../utils/withSSRAuth'
+import React, { useRef } from 'react'
 import successAnimation from '../../../../../public/85744-success.json'
 import personAnimation from '../../../../../public/lf20_qvuvdhap.json'
-
 import { ButtonLink } from '../../../../components/ButtonLink'
+import { withSSRAuth } from '../../../../utils/withSSRAuth'
 
 export default function Success() {
     const ref = useRef(null)
     return (
-        <Flex direction="column" flex="1" bg="white.900">
+        <Alert
+            status="success"
+            variant="subtle"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+        >
             <Flex
                 w="100%"
                 h="120vh"
@@ -23,7 +27,8 @@ export default function Success() {
                 px="6"
                 color="cinza.825"
                 justifyContent="center"
-                textAlign="center">
+                textAlign="center"
+            >
                 <Box display="flex" alignItems="center" justifyContent="center">
                     <Player
                         id="firstLottie"
@@ -32,7 +37,8 @@ export default function Success() {
                         controls
                         loop
                         src={successAnimation}
-                        style={{ width: '30%' }}>
+                        style={{ width: '30%' }}
+                    >
                         <Player
                             id="gif"
                             ref={ref}
@@ -40,16 +46,19 @@ export default function Success() {
                             controls
                             loop
                             src={personAnimation}
-                            style={{ width: '30%' }}></Player>
+                            style={{ width: '30%' }}
+                        ></Player>
                     </Player>
                 </Box>
+
 
                 <Box
                     as="span"
                     fontFamily="inter"
                     fontSize={34}
                     lineHeight={1}
-                    fontWeight="600">
+                    fontWeight="600"
+                >
                     Compra
                 </Box>
                 <Box
@@ -57,7 +66,8 @@ export default function Success() {
                     fontFamily="inter"
                     fontSize={34}
                     lineHeight={2}
-                    fontWeight="600">
+                    fontWeight="600"
+                >
                     realizada com sucesso!
                 </Box>
                 <Box
@@ -65,14 +75,16 @@ export default function Success() {
                     as="span"
                     fontFamily="inter"
                     fontSize={18}
-                    fontWeight="400">
+                    fontWeight="400"
+                >
                     Para acompanhar o seu pedido acessa o menu
                 </Box>
                 <Box
                     as="span"
                     fontFamily="inter"
                     fontSize={24}
-                    fontWeight="400">
+                    fontWeight="400"
+                >
                     Meus Pedidos
                 </Box>
 
@@ -80,7 +92,8 @@ export default function Success() {
                     display="flex"
                     alignItems="center"
                     mt={6}
-                    justifyContent="center">
+                    justifyContent="center"
+                >
                     <ButtonLink
                         maxW={100}
                         h="54px"
@@ -89,12 +102,13 @@ export default function Success() {
                         bg="principal.900"
                         colorText="white.900"
                         _hover={{ background: 'principal.800' }}
-                        href="/home">
+                        href="/home"
+                    >
                         OK
                     </ButtonLink>
                 </Box>
             </Flex>
-        </Flex>
+        </Alert>
     )
 }
 

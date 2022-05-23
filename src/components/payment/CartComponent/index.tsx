@@ -180,7 +180,6 @@ function CartComponent({ total }: IProps) {
     }, [numberOfInstallments, total])
 
     function handleSelectInstallments(event: IInstallment) {
-        console.log('Pegou o', event)
 
         setSelectedInstallment(event)
     }

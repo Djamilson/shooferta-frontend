@@ -76,7 +76,8 @@ export const getServerSideProps = withSSRGuest(async ctx => {
         console.log('Entruo')
 
         const url = `/pages/accesses/counter`
-        await api.post(url, { metadata: ctx.req.headers })
+      await api.post(url, { metadata: ctx.req.headers })
+      console.log('passou da busca')
     } catch (e) {
         console.log(e)
     }

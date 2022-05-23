@@ -45,8 +45,8 @@ type IProps = {
 }
 
 function BasketComponent({ meInitCategories, meInitMenuPolitics }: IProps) {
-  const router = useRouter()
-  const toast = useToast()
+    const router = useRouter()
+    const toast = useToast()
 
     const { isAuthenticated, user } = useAuth()
 
@@ -99,8 +99,7 @@ function BasketComponent({ meInitCategories, meInitMenuPolitics }: IProps) {
     const cartFormatted = useMemo(
         () =>
             cart &&
-        cart.map((item: INewProduct) => {
-             
+            cart.map((item: INewProduct) => {
                 const subtotal =
                     Number(item.product.price.price_promotion) > 0
                         ? Number(item.product.price.price_promotion) *

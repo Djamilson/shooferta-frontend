@@ -27,7 +27,6 @@ type ErrorsPayment = {
     card_number?: FieldError
     card_expiration_date?: FieldError
     card_cvv?: FieldError
-    installment?: FieldError
 }
 
 type IProps = {

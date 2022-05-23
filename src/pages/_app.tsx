@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { AnimationLoading } from '../components/Loading/AnimationLoading'
 import AppProvider from '../hooks'
 import { theme } from '../styles/theme'
+import React from 'react'
 
 function MyApp({ Component, pageProps }: AppProps) {
     const [loading, setLoading] = useState<boolean>(true)
